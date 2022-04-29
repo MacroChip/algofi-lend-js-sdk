@@ -1,6 +1,6 @@
 {
   "name": "@algofi/lend",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "The official JavaScript SDK for the Algofi Lending Protocol",
   "main": "dist/index.js",
   "files": [

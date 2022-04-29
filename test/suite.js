@@ -1,5 +1,5 @@
 const algosdk = require("algosdk")
-const { v1 } = require("@algofi/v0")
+/***const { v1 } = require("@algofi/v0")
 const assert = require("assert")
 
 // load chainvault node
@@ -278,4 +278,4 @@ describe("market check one", async function() {
       assert.equal(bankCirculation / 1e12 <= 100000, 1)
     })
   })
-})
+})***/
