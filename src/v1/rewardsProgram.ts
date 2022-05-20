@@ -124,11 +124,12 @@ export class RewardsProgram {
     const managerStorageState = await readLocalState(this.algod, storageAddress, manager.getManagerAppId())
     const onCurrentProgram =
       this.getRewardsProgramNumber() === get(managerStorageState, managerStrings.user_rewards_program_number, 0)
+    console.log({ onCurrentProgram })
     let totalUnrealizedRewards = onCurrentProgram ? get(managerStorageState, managerStrings.user_pending_rewards, 0) : 0
     let totalSecondaryUnrealizedRewards = onCurrentProgram
       ? get(managerStorageState, managerStrings.user_secondary_pending_rewards, 0)
       : 0
-
+    console.log({ totalUnrealizedRewards, totalSecondaryUnrealizedRewards })
     let totalBorrowUsd = 0
     for (const market of markets) {
       totalBorrowUsd += await market.getAsset().toUSD(await market.getUnderlyingBorrowed())
@@ -138,18 +139,26 @@ export class RewardsProgram {
     const timeElapsed = Math.floor(date.getTime() / 1000 - this.getLatestRewardsTime())
     const rewardsIssued = this.getRewardsAmount() > 0 ? timeElapsed * this.getRewardsPerSecond() : 0
 
+    console.log({ totalBorrowUsd })
+
     for (const market of markets) {
       const marketCounterPrefix = Buffer.from(intToBytes(market.getMarketCounter())).toString("utf-8")
       const coefficient = get(managerState, marketCounterPrefix + managerStrings.counter_indexed_rewards_coefficient, 0)
+
+      console.log({ coefficient })
 
       // Ask about defuault value for get function here
       const userCoefficient: number = onCurrentProgram
         ? managerStorageState[marketCounterPrefix + managerStrings.counter_to_user_rewards_coefficient_initial]
         : 0
 
+      console.log({ userCoefficient })
+
       const marketUnderlyingTvl =
         (await market.getUnderlyingBorrowed()) +
         (market.getActiveCollateral() * market.getBankToUnderlyingExchange()) / SCALE_FACTOR
+
+      console.log({ marketUnderlyingTvl })
 
       const projectedCoefficient =
         coefficient +
@@ -157,15 +166,17 @@ export class RewardsProgram {
           (rewardsIssued *
             REWARDS_SCALE_FACTOR *
             (await market.getAsset().toUSD(await market.getUnderlyingBorrowed()))) /
-            (totalBorrowUsd * marketUnderlyingTvl)
+          (totalBorrowUsd * marketUnderlyingTvl)
         )
 
       const marketStorageState = await market.getStorageState(storageAddress)
 
+      console.log({ marketStorageState })
+
       const unrealizedRewards = Math.floor(
         ((projectedCoefficient - userCoefficient) *
           (marketStorageState.activeCollateralUnderlying + marketStorageState.borrowUnderlying)) /
-          REWARDS_SCALE_FACTOR
+        REWARDS_SCALE_FACTOR
       )
 
       const secondaryUnrealizedRewards = Math.floor(

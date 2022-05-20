@@ -1,0 +1,3950 @@
+	#pragma version 6
+	txn ApplicationID
+	int 0
+	==
+	bnz label1
+	txn OnCompletion
+	int 4
+	==
+	bnz label2
+	txn OnCompletion
+	intc 9 
+	==
+	bnz label3
+	txn OnCompletion
+	intc 5 
+	==
+	bnz label4
+	txn OnCompletion
+	int 1
+	==
+	bnz label5
+	global GroupSize
+	intc 6 
+	>=
+	bnz label6
+	int 0
+label319:
+	bnz label7
+	txn Sender
+	pushbytes 0x1828bea37c9f05ca75ccbcbf80bd282461a69f6efddf912124329fc6bb6b5729 
+	==
+	bnz label8
+	txn Sender
+	bytec 18 
+	app_global_get
+	==
+	bnz label9
+	err
+label9:
+	txna ApplicationArgs 0
+	pushbytes 0x73736d63 
+	==
+	bnz label10
+	txna ApplicationArgs 0
+	pushbytes 0x736375 
+	==
+	bnz label11
+	txna ApplicationArgs 0
+	pushbytes 0x736966 
+	==
+	bnz label12
+	txna ApplicationArgs 0
+	pushbytes 0x7461 
+	==
+	bnz label13
+	txna ApplicationArgs 0
+	pushbytes 0x6f6961 
+	==
+	bnz label14
+	txna ApplicationArgs 0
+	pushbytes 0x737270 
+	==
+	bnz label15
+	txna ApplicationArgs 0
+	pushbytes 0x757270 
+	==
+	bnz label16
+	txna ApplicationArgs 0
+	pushbytes 0x647270 
+	==
+	bnz label17
+	txna ApplicationArgs 0
+	pushbytes 0x69637564 
+	==
+	bnz label18
+	err
+label18:
+	bytec 11 
+	app_global_get
+	int 0
+	==
+	assert
+	bytec 19 
+	app_global_get
+	txna ApplicationArgs 1
+	btoi
+	<
+	assert
+	bytec 19 
+	txna ApplicationArgs 1
+	btoi
+	app_global_put
+	int 1
+	b label19
+label17:
+	bytec 8 
+	app_global_get
+	int 0
+	>
+	assert
+	bytec 4 
+	bytec 4 
+	app_global_get
+	int 1
+	+
+	app_global_put
+	int 1
+	store 0
+label21:
+	load 0
+	bytec 5 
+	app_global_get
+	<=
+	bnz label20
+	bytec 8 
+	int 0
+	app_global_put
+	bytec 12 
+	int 0
+	app_global_put
+	byte base64 cmE=
+	int 0
+	app_global_put
+	byte base64 cnA=
+	int 1
+	app_global_put
+	bytec 13 
+	int 0
+	app_global_put
+	bytec 20 
+	int 0
+	app_global_put
+	bytec 15 
+	int 0
+	app_global_put
+	bytec 7 
+	int 0
+	app_global_put
+	byte base64 bHJ0
+	int 0
+	app_global_put
+	int 1
+	b label19
+label20:
+	load 0
+	itob
+	bytec 14 
+	concat
+	int 0
+	app_global_put
+	load 0
+	int 1
+	+
+	store 0
+	b label21
+label16:
+	txna ApplicationArgs 2
+	btoi
+	int 0
+	!=
+	assert
+	txna ApplicationArgs 2
+	btoi
+	txna ApplicationArgs 1
+	btoi
+	<
+	assert
+	byte base64 cmE=
+	txna ApplicationArgs 1
+	btoi
+	app_global_put
+	byte base64 cnA=
+	txna ApplicationArgs 2
+	btoi
+	app_global_put
+	bytec 7 
+	txna ApplicationArgs 3
+	btoi
+	app_global_put
+	int 1
+	b label19
+label15:
+	txna ApplicationArgs 2
+	txna ApplicationArgs 5
+	!=
+	assert
+	txna ApplicationArgs 4
+	btoi
+	int 0
+	!=
+	assert
+	txna ApplicationArgs 4
+	btoi
+	txna ApplicationArgs 3
+	btoi
+	<
+	assert
+	bytec 4 
+	bytec 4 
+	app_global_get
+	int 1
+	+
+	app_global_put
+	int 1
+	store 0
+label23:
+	load 0
+	bytec 5 
+	app_global_get
+	<=
+	bnz label22
+	txna ApplicationArgs 5
+	btoi
+	int 1
+	!=
+	assert
+	txna ApplicationArgs 7
+	btoi
+	pushint 511
+	<=
+	assert
+	bytec 8 
+	txna ApplicationArgs 1
+	btoi
+	app_global_put
+	bytec 12 
+	txna ApplicationArgs 2
+	btoi
+	app_global_put
+	byte base64 cmE=
+	txna ApplicationArgs 3
+	btoi
+	app_global_put
+	byte base64 cnA=
+	txna ApplicationArgs 4
+	btoi
+	app_global_put
+	bytec 13 
+	txna ApplicationArgs 5
+	btoi
+	app_global_put
+	bytec 20 
+	txna ApplicationArgs 6
+	btoi
+	app_global_put
+	bytec 15 
+	txna ApplicationArgs 7
+	btoi
+	app_global_put
+	bytec 7 
+	txna ApplicationArgs 8
+	btoi
+	app_global_put
+	byte base64 bHJ0
+	txna ApplicationArgs 1
+	btoi
+	app_global_put
+	int 1
+	b label19
+label22:
+	load 0
+	itob
+	bytec 14 
+	concat
+	int 0
+	app_global_put
+	load 0
+	int 1
+	+
+	store 0
+	b label23
+label14:
+	txna ApplicationArgs 1
+	btoi
+	int 1
+	!=
+	bnz label24
+label25:
+	int 1
+	b label19
+label24:
+	itxn_begin
+	int 4
+	itxn_field TypeEnum
+	txna ApplicationArgs 1
+	btoi
+	itxn_field XferAsset
+	int 0
+	itxn_field AssetAmount
+	global CurrentApplicationAddress
+	itxn_field AssetReceiver
+	int 0
+	itxn_field Fee
+	itxn_submit
+	b label25
+label13:
+	global GroupSize
+	intc 5 
+	==
+	assert
+	txn GroupIndex
+	int 0
+	==
+	bnz label26
+label27:
+	int 1
+	b label19
+label26:
+	bytec 18 
+	gtxn 1 Sender
+	app_global_put
+	b label27
+label12:
+	bytec 11 
+	int 1
+	app_global_put
+	int 1
+	b label19
+label11:
+	bytec 11 
+	app_global_get
+	int 0
+	==
+	assert
+	txna ApplicationArgs 1
+	btoi
+	global LatestTimestamp
+	bytec 19 
+	app_global_get
+	+
+	>=
+	assert
+	bytec 16 
+	txna ApplicationArgs 1
+	btoi
+	app_global_put
+	int 1
+	b label19
+label10:
+	txn GroupIndex
+	int 0
+	==
+	bnz label28
+	int 1
+	b label19
+label28:
+	bytec 11 
+	app_global_get
+	int 0
+	==
+	assert
+	bytec 5 
+	app_global_get
+	txna ApplicationArgs 1
+	btoi
+	<
+	assert
+	txna ApplicationArgs 1
+	btoi
+	intc 17 
+	<=
+	assert
+	txna ApplicationArgs 1
+	btoi
+	intc 6 
+	<=
+	assert
+	int 1
+	txnas Applications
+	int 0
+	==
+	assert
+	int 1
+	store 0
+label34:
+	load 0
+	txna ApplicationArgs 1
+	btoi
+	<=
+	bnz label29
+	bytec 5 
+	txna ApplicationArgs 1
+	btoi
+	app_global_put
+	int 1
+	b label19
+label29:
+	load 0
+	intc 10 
+	<=
+	bnz label30
+	load 0
+	intc 11 
+	<=
+	bnz label31
+	load 0
+	intc 7 
+	<=
+	bnz label32
+	load 0
+	intc 4 
+	==
+	bnz label33
+	intc 30 
+label35:
+	store 1
+	load 1
+	pushbytes 0x6d6d 
+	app_global_get_ex
+	store 38
+	store 37
+	load 38
+	assert
+	load 0
+	load 37
+	==
+	assert
+	load 0
+	int 1
+	+
+	store 0
+	b label34
+label33:
+	intc 31 
+	b label35
+label32:
+	load 0
+	intc 6 
+	==
+	bnz label36
+	intc 32 
+	b label35
+label36:
+	intc 18 
+	b label35
+label31:
+	load 0
+	intc 13 
+	<=
+	bnz label37
+	load 0
+	intc 12 
+	==
+	bnz label38
+	intc 19 
+	b label35
+label38:
+	intc 20 
+	b label35
+label37:
+	load 0
+	intc 14 
+	==
+	bnz label39
+	intc 21 
+	b label35
+label39:
+	intc 22 
+	b label35
+label30:
+	load 0
+	int 4
+	<=
+	bnz label40
+	load 0
+	int 6
+	<=
+	bnz label41
+	load 0
+	intc 15 
+	==
+	bnz label42
+	intc 23 
+	b label35
+label42:
+	intc 24 
+	b label35
+label41:
+	load 0
+	intc 9 
+	==
+	bnz label43
+	intc 16 
+	b label35
+label43:
+	intc 25 
+	b label35
+label40:
+	load 0
+	intc 5 
+	<=
+	bnz label44
+	load 0
+	intc 8 
+	==
+	bnz label45
+	intc 26 
+	b label35
+label45:
+	intc 27 
+	b label35
+label44:
+	load 0
+	int 1
+	==
+	bnz label46
+	intc 28 
+	b label35
+label46:
+	intc 29 
+	b label35
+label8:
+	txna ApplicationArgs 0
+	pushbytes 0x727661 
+	==
+	bnz label47
+	err
+label47:
+	itxn_begin
+	txna Accounts 1
+	itxn_field Sender
+	int 1
+	itxn_field TypeEnum
+	txna ApplicationArgs 1
+	btoi
+	itxn_field Amount
+	txn Sender
+	itxn_field Receiver
+	int 0
+	itxn_field Fee
+	pushbytes 0x756e7661756c74 
+	itxn_field Note
+	itxn_submit
+	int 1
+	b label19
+label7:
+	txn GroupIndex
+	int 0
+	==
+	bnz label48
+label282:
+	txn GroupIndex
+	int 0
+	==
+	bnz label49
+	txn GroupIndex
+	int 1
+	==
+	bnz label50
+	txn GroupIndex
+	intc 5 
+	==
+	bnz label51
+	txn GroupIndex
+	intc 8 
+	>=
+	txn GroupIndex
+	intc 12 
+	<=
+	&&
+	bnz label52
+	txn GroupIndex
+	intc 11 
+	==
+	bnz label53
+	err
+label53:
+	txna ApplicationArgs 0
+	pushbytes 0x7263 
+	==
+	bnz label54
+	txna ApplicationArgs 0
+	pushbytes 0x726375 
+	==
+	bnz label55
+	txna ApplicationArgs 0
+	pushbytes 0x62 
+	==
+	bnz label56
+	txna ApplicationArgs 0
+	bytec 21 
+	==
+	bnz label57
+	txna ApplicationArgs 0
+	pushbytes 0x6d 
+	==
+	bnz label58
+	txna ApplicationArgs 0
+	pushbytes 0x6275 
+	==
+	bnz label59
+	txna ApplicationArgs 0
+	pushbytes 0x6163 
+	==
+	bnz label60
+	txna ApplicationArgs 0
+	pushbytes 0x6d74 
+	==
+	bnz label61
+	txna ApplicationArgs 0
+	pushbytes 0x7262 
+	==
+	bnz label62
+	txna ApplicationArgs 0
+	pushbytes 0x6372 
+	==
+	bnz label63
+	txna ApplicationArgs 0
+	pushbytes 0x7376 
+	==
+	bnz label64
+	txna ApplicationArgs 0
+	pushbytes 0x736774 
+	==
+	bnz label65
+	txna ApplicationArgs 0
+	pushbytes 0x736b74 
+	==
+	bnz label66
+	txna ApplicationArgs 0
+	pushbytes 0x736b6f74 
+	==
+	bnz label67
+	err
+label67:
+	global GroupSize
+	intc 6 
+	==
+	assert
+	itxn_begin
+	int 0
+	bytec 9 
+	app_local_get
+	itxn_field Sender
+	intc 5 
+	itxn_field TypeEnum
+	int 0
+	itxn_field Fee
+	itxn_submit
+	int 1
+	b label19
+label66:
+	global GroupSize
+	intc 6 
+	==
+	assert
+	itxn_begin
+	int 0
+	bytec 9 
+	app_local_get
+	itxn_field Sender
+	intc 5 
+	itxn_field TypeEnum
+	txna ApplicationArgs 1
+	itxn_field VotePK
+	txna ApplicationArgs 2
+	itxn_field SelectionPK
+	txna ApplicationArgs 3
+	itxn_field StateProofPK
+	txna ApplicationArgs 4
+	btoi
+	itxn_field VoteFirst
+	txna ApplicationArgs 5
+	btoi
+	itxn_field VoteLast
+	txna ApplicationArgs 6
+	btoi
+	itxn_field VoteKeyDilution
+	int 0
+	itxn_field Fee
+	itxn_submit
+	int 1
+	b label19
+label65:
+	global GroupSize
+	intc 6 
+	==
+	assert
+	itxn_begin
+	int 0
+	bytec 9 
+	app_local_get
+	itxn_field Sender
+	int 1
+	itxn_field TypeEnum
+	int 0
+	itxn_field Amount
+	txna Accounts 2
+	itxn_field Receiver
+	int 0
+	itxn_field Fee
+	txn Note
+	itxn_field Note
+	itxn_submit
+	int 1
+	b label19
+label64:
+	global GroupSize
+	intc 7 
+	==
+	assert
+	gtxn 13 ApplicationID
+	intc 16 
+	==
+	assert
+	int 1
+	b label19
+label63: //applicaiton args "cr" which is claim rewards
+	global GroupSize
+	intc 6 
+	==
+	assert
+	int 0
+	bytec 9 
+	app_local_get
+	txna Accounts 1
+	==
+	assert
+	bytec 8 
+	app_global_get
+	int 0
+	>
+	assert
+	int 1
+	bytec 17 
+	app_local_get
+	bytec 4 
+	app_global_get
+	==
+	assert
+	int 1
+	bytec 6 
+	app_local_get
+	int 0
+	>
+	bytec 12 
+	app_global_get
+	int 1
+	==
+	bnz label68
+	global CurrentApplicationAddress
+	bytec 12 
+	app_global_get
+	asset_holding_get AssetBalance
+	store 78
+	store 77
+	load 78
+	assert
+	load 77
+label77:
+	int 1
+	bytec 6 
+	app_local_get
+	>
+	&&
+	store 10
+	int 1
+	bytec 10 
+	app_local_get
+	int 0
+	>
+	bytec 13 
+	app_global_get
+	int 0
+	!=
+	bnz label69
+	int 0
+label76:
+	int 1
+	bytec 10 
+	app_local_get
+	>
+	&&
+	store 11
+	load 10
+	load 11
+	||
+	assert
+	load 10
+	bnz label70
+label74:
+	bytec 13 
+	app_global_get
+	int 0
+	>
+	load 11
+	&&
+	bnz label71
+label72:
+	int 1
+	b label19
+label71:
+	itxn_begin
+	int 4
+	itxn_field TypeEnum
+	bytec 13 
+	app_global_get
+	itxn_field XferAsset
+	int 1
+	bytec 10 
+	app_local_get
+	itxn_field AssetAmount
+	txn Sender
+	itxn_field AssetReceiver
+	int 0
+	itxn_field Fee
+	itxn_submit
+	int 1
+	bytec 10 
+	int 0
+	app_local_put
+	b label72
+label70:
+	bytec 12 
+	app_global_get
+	int 1
+	==
+	bnz label73
+	itxn_begin
+	int 4
+	itxn_field TypeEnum
+	bytec 12 
+	app_global_get
+	itxn_field XferAsset
+	int 1
+	bytec 6 
+	app_local_get
+	itxn_field AssetAmount
+	txn Sender
+	itxn_field AssetReceiver
+	int 0
+	itxn_field Fee
+	itxn_submit
+label75:
+	int 1
+	bytec 6 
+	int 0
+	app_local_put
+	b label74
+label73:
+	global CurrentApplicationAddress
+	balance
+	int 1
+	bytec 6 
+	app_local_get
+	pushint 1000000
+	+
+	>=
+	assert
+	itxn_begin
+	int 1
+	itxn_field TypeEnum
+	int 1
+	bytec 6 
+	app_local_get
+	itxn_field Amount
+	txn Sender
+	itxn_field Receiver
+	int 0
+	itxn_field Fee
+	itxn_submit
+	b label75
+label69:
+	global CurrentApplicationAddress
+	bytec 13 
+	app_global_get
+	asset_holding_get AssetBalance
+	store 80
+	store 79
+	load 80
+	assert
+	load 79
+	b label76
+label68:
+	global CurrentApplicationAddress
+	balance
+	b label77
+label62:
+	global GroupSize
+	intc 4 
+	==
+	assert
+	int 1
+	b label19
+label61:
+	global GroupSize
+	intc 4 
+	==
+	assert
+	int 1
+	b label19
+label60:
+	global GroupSize
+	intc 4 
+	==
+	assert
+	int 1
+	b label19
+label59:
+	global GroupSize
+	intc 4 
+	==
+	assert
+	int 1
+	b label19
+label58:
+	global GroupSize
+	intc 4 
+	==
+	assert
+	int 1
+	b label19
+label57:
+	global GroupSize
+	intc 17 
+	==
+	assert
+	int 1
+	b label19
+label56:
+	global GroupSize
+	intc 7 
+	==
+	assert
+	int 1
+	b label19
+label55:
+	global GroupSize
+	intc 7 
+	==
+	assert
+	int 1
+	b label19
+label54:
+	global GroupSize
+	intc 7 
+	==
+	assert
+	int 1
+	b label19
+label52:
+	int 1
+	b label19
+label51:
+	int 1
+	global CurrentApplicationID
+	bytec 22 
+	app_local_get_ex
+	store 40
+	store 39
+	load 40
+	assert
+	int 0
+	store 9
+	bytec 8 
+	app_global_get
+	int 0
+	>
+	bnz label78
+label211:
+	int 0
+	store 3
+	int 0
+	store 193
+	int 0
+	store 197
+	int 0
+	store 201
+	int 0
+	store 205
+	int 0
+	store 209
+	int 0
+	store 213
+	int 0
+	store 217
+	int 0
+	store 221
+	int 0
+	store 225
+	int 0
+	store 229
+	int 0
+	store 233
+	int 0
+	store 237
+	int 0
+	store 241
+	int 0
+	store 245
+	int 0
+	store 249
+	int 0
+	store 253
+	int 0
+	store 194
+	int 0
+	store 198
+	int 0
+	store 202
+	int 0
+	store 206
+	int 0
+	store 210
+	int 0
+	store 214
+	int 0
+	store 218
+	int 0
+	store 222
+	int 0
+	store 226
+	int 0
+	store 230
+	int 0
+	store 234
+	int 0
+	store 238
+	int 0
+	store 242
+	int 0
+	store 246
+	int 0
+	store 250
+	int 0
+	store 254
+	int 0
+	store 8
+	load 9
+	bnz label79
+label151:
+	int 0
+	store 15
+	int 0
+	store 14
+	int 0
+	store 19
+	bytec 8 
+	app_global_get
+	int 0
+	>
+	bnz label80
+label149:
+	int 1
+	bytec 17 
+	app_local_get
+	bytec 4 
+	app_global_get
+	!=
+	bnz label81
+label148:
+	int 1
+	store 0
+label96:
+	load 0
+	bytec 5 
+	app_global_get
+	<=
+	bnz label82
+	int 1
+	bytec 17 
+	app_local_get
+	bytec 4 
+	app_global_get
+	!=
+	bnz label83
+label86:
+	int 1
+	pushbytes 0x7567 
+	load 15
+	app_local_put
+	int 1
+	pushbytes 0x756762 
+	load 14
+	app_local_put
+	load 19
+	bnz label84
+label85:
+	int 1
+	b label19
+label84:
+	int 1
+	bytec 23 
+	global LatestTimestamp
+	app_local_put
+	b label85
+label83:
+	int 1
+	bytec 17 
+	bytec 4 
+	app_global_get
+	app_local_put
+	b label86
+label82:
+	load 0
+	intc 10 
+	<=
+	bnz label87
+	load 0
+	intc 11 
+	<=
+	bnz label88
+	load 0
+	intc 7 
+	<=
+	bnz label89
+	load 0
+	intc 4 
+	==
+	bnz label90
+	intc 30 
+label136:
+	store 1
+	load 1
+	bytec 26 
+	app_global_get_ex
+	store 20
+	store 12
+	load 20
+	assert
+	load 12
+	int 1
+	==
+	!
+	bnz label91
+	load 1
+	bytec 27 
+	app_global_get_ex
+	store 36
+	store 35
+	load 36
+	assert
+	int 0
+	store 17
+	load 1
+	bytec 24 
+	app_global_get_ex
+	store 24
+	store 23
+	load 1
+	pushbytes 0x6366 
+	app_global_get_ex
+	store 28
+	store 27
+	int 1
+	load 1
+	pushbytes 0x756163 
+	app_local_get_ex
+	store 42
+	store 41
+	load 42
+	bnz label92
+label135:
+	int 0
+	store 18
+	int 1
+	load 1
+	pushbytes 0x756273 
+	app_local_get_ex
+	store 44
+	store 43
+	load 1
+	bytec 28 
+	app_global_get_ex
+	store 26
+	store 25
+	load 1
+	pushbytes 0x6f62 
+	app_global_get_ex
+	store 34
+	store 33
+	load 44
+	bnz label93
+label134:
+	load 9
+	bytec 15 
+	app_global_get
+	load 0
+	int 1
+	-
+	getbit
+	&&
+	bnz label94
+label104:
+	load 19
+	bytec 15 
+	app_global_get
+	load 0
+	int 1
+	-
+	getbit
+	&&
+	bnz label95
+label91:
+	load 0
+	int 1
+	+
+	store 0
+	b label96
+label95:
+	int 1
+	bytec 17 
+	app_local_get
+	bytec 4 
+	app_global_get
+	!=
+	bnz label97
+label98:
+	load 18
+	load 17
+	+
+	load 0
+	itob
+	bytec 14 
+	concat
+	app_global_get
+	int 1
+	load 0
+	itob
+	bytec 25 
+	concat
+	app_local_get
+	-
+	mulw
+	int 0
+	intc 34 
+	divmodw
+	pop
+	pop
+	swap
+	!
+	assert
+	store 16
+	int 1
+	bytec 6 
+	int 1
+	bytec 6 
+	app_local_get
+	load 16
+	+
+	app_local_put
+	int 1
+	bytec 10 
+	int 1
+	bytec 10 
+	app_local_get
+	load 16
+	bytec 20 
+	app_global_get
+	*
+	intc 35 
+	/
+	+
+	app_local_put
+	int 1
+	load 0
+	itob
+	bytec 25 
+	concat
+	load 0
+	itob
+	bytec 14 
+	concat
+	app_global_get
+	app_local_put
+	b label91
+label97:
+	int 1
+	load 0
+	itob
+	bytec 25 
+	concat
+	int 0
+	app_local_put
+	b label98
+label94:
+	load 1
+	bytec 24 
+	app_global_get_ex
+	store 24
+	store 23
+	load 1
+	bytec 29 
+	app_global_get_ex
+	store 22
+	store 21
+	load 22
+	bnz label99
+	int 0
+	store 7
+label133:
+	load 0
+	intc 10 
+	<=
+	bnz label100
+	load 0
+	intc 11 
+	<=
+	bnz label101
+	load 0
+	intc 7 
+	<=
+	bnz label102
+	load 0
+	intc 4 
+	==
+	bnz label103
+	load 254
+label121:
+	store 5
+	load 5
+	int 0
+	>
+	bz label104
+	load 0
+	itob
+	bytec 14 
+	concat
+	load 0
+	itob
+	bytec 14 
+	concat
+	app_global_get
+	load 8
+	load 0
+	intc 10 
+	<=
+	bnz label105
+	load 0
+	intc 11 
+	<=
+	bnz label106
+	load 0
+	intc 7 
+	<=
+	bnz label107
+	load 0
+	intc 4 
+	==
+	bnz label108
+	load 253
+label109:
+	mulw
+	intc 34 
+	uncover 2
+	dig 1
+	*
+	cover 2
+	mulw
+	cover 2
+	+
+	swap
+	load 3
+	load 5
+	int 1
+	+
+	mulw
+	divmodw
+	pop
+	pop
+	swap
+	!
+	assert
+	+
+	app_global_put
+	b label104
+label108:
+	load 249
+	b label109
+label107:
+	load 0
+	intc 6 
+	==
+	bnz label110
+	load 245
+	b label109
+label110:
+	load 241
+	b label109
+label106:
+	load 0
+	intc 13 
+	<=
+	bnz label111
+	load 0
+	intc 12 
+	==
+	bnz label112
+	load 237
+	b label109
+label112:
+	load 233
+	b label109
+label111:
+	load 0
+	intc 14 
+	==
+	bnz label113
+	load 229
+	b label109
+label113:
+	load 225
+	b label109
+label105:
+	load 0
+	int 4
+	<=
+	bnz label114
+	load 0
+	int 6
+	<=
+	bnz label115
+	load 0
+	intc 15 
+	==
+	bnz label116
+	load 221
+	b label109
+label116:
+	load 217
+	b label109
+label115:
+	load 0
+	intc 9 
+	==
+	bnz label117
+	load 213
+	b label109
+label117:
+	load 209
+	b label109
+label114:
+	load 0
+	intc 5 
+	<=
+	bnz label118
+	load 0
+	intc 8 
+	==
+	bnz label119
+	load 205
+	b label109
+label119:
+	load 201
+	b label109
+label118:
+	load 0
+	int 1
+	==
+	bnz label120
+	load 197
+	b label109
+label120:
+	load 193
+	b label109
+label103:
+	load 250
+	b label121
+label102:
+	load 0
+	intc 6 
+	==
+	bnz label122
+	load 246
+	b label121
+label122:
+	load 242
+	b label121
+label101:
+	load 0
+	intc 13 
+	<=
+	bnz label123
+	load 0
+	intc 12 
+	==
+	bnz label124
+	load 238
+	b label121
+label124:
+	load 234
+	b label121
+label123:
+	load 0
+	intc 14 
+	==
+	bnz label125
+	load 230
+	b label121
+label125:
+	load 226
+	b label121
+label100:
+	load 0
+	int 4
+	<=
+	bnz label126
+	load 0
+	int 6
+	<=
+	bnz label127
+	load 0
+	intc 15 
+	==
+	bnz label128
+	load 222
+	b label121
+label128:
+	load 218
+	b label121
+label127:
+	load 0
+	intc 9 
+	==
+	bnz label129
+	load 214
+	b label121
+label129:
+	load 210
+	b label121
+label126:
+	load 0
+	intc 5 
+	<=
+	bnz label130
+	load 0
+	intc 8 
+	==
+	bnz label131
+	load 206
+	b label121
+label131:
+	load 202
+	b label121
+label130:
+	load 0
+	int 1
+	==
+	bnz label132
+	load 198
+	b label121
+label132:
+	load 194
+	b label121
+label99:
+	load 21
+	load 23
+	mulw
+	int 0
+	intc 33 
+	divmodw
+	pop
+	pop
+	swap
+	!
+	assert
+	store 7
+	b label133
+label93:
+	load 43
+	int 0
+	!=
+	bz label134
+	load 43
+	load 25
+	mulw
+	int 0
+	load 33
+	divmodw
+	pop
+	pop
+	swap
+	!
+	assert
+	store 18
+	load 14
+	load 18
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	app_global_get
+	mulw
+	int 0
+	load 35
+	divmodw
+	pop
+	pop
+	swap
+	!
+	assert
+	+
+	store 14
+	b label134
+label92:
+	load 41
+	load 23
+	mulw
+	int 0
+	intc 33 
+	divmodw
+	pop
+	pop
+	swap
+	!
+	assert
+	store 17
+	load 15
+	load 17
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	app_global_get
+	mulw
+	int 0
+	load 35
+	divmodw
+	pop
+	pop
+	swap
+	!
+	assert
+	load 27
+	*
+	intc 35 
+	/
+	+
+	store 15
+	b label135
+label90:
+	intc 31 
+	b label136
+label89:
+	load 0
+	intc 6 
+	==
+	bnz label137
+	intc 32 
+	b label136
+label137:
+	intc 18 
+	b label136
+label88:
+	load 0
+	intc 13 
+	<=
+	bnz label138
+	load 0
+	intc 12 
+	==
+	bnz label139
+	intc 19 
+	b label136
+label139:
+	intc 20 
+	b label136
+label138:
+	load 0
+	intc 14 
+	==
+	bnz label140
+	intc 21 
+	b label136
+label140:
+	intc 22 
+	b label136
+label87:
+	load 0
+	int 4
+	<=
+	bnz label141
+	load 0
+	int 6
+	<=
+	bnz label142
+	load 0
+	intc 15 
+	==
+	bnz label143
+	intc 23 
+	b label136
+label143:
+	intc 24 
+	b label136
+label142:
+	load 0
+	intc 9 
+	==
+	bnz label144
+	intc 16 
+	b label136
+label144:
+	intc 25 
+	b label136
+label141:
+	load 0
+	intc 5 
+	<=
+	bnz label145
+	load 0
+	intc 8 
+	==
+	bnz label146
+	intc 26 
+	b label136
+label146:
+	intc 27 
+	b label136
+label145:
+	load 0
+	int 1
+	==
+	bnz label147
+	intc 28 
+	b label136
+label147:
+	intc 29 
+	b label136
+label81:
+	int 1
+	bytec 6 
+	int 0
+	app_local_put
+	int 1
+	bytec 10 
+	int 0
+	app_local_put
+	int 1
+	bytec 23 
+	int 0
+	app_local_put
+	b label148
+label80:
+	int 1
+	bytec 23 
+	app_local_get
+	byte base64 bHJ0
+	app_global_get
+	<
+	store 19
+	b label149
+label79:
+	bytec 7 
+	app_global_get
+	int 0
+	!=
+	store 13
+	int 1
+	store 0
+label172:
+	load 0
+	bytec 5 
+	app_global_get
+	<=
+	bnz label150
+	load 3
+	int 0
+	>
+	bz label151
+	byte base64 cnA=
+	app_global_get
+	global LatestTimestamp
+	byte base64 bHJ0
+	app_global_get
+	byte base64 cmE=
+	app_global_get
+	byte base64 cnA=
+	app_global_get
+	/
+	+
+	>
+	bnz label152
+	global LatestTimestamp
+label155:
+	byte base64 bHJ0
+	app_global_get
+	-
+	*
+	store 8
+	byte base64 bHJ0
+	global LatestTimestamp
+	byte base64 bHJ0
+	app_global_get
+	byte base64 cmE=
+	app_global_get
+	byte base64 cnA=
+	app_global_get
+	/
+	+
+	>
+	bnz label153
+	global LatestTimestamp
+label154:
+	app_global_put
+	byte base64 cmE=
+	byte base64 cmE=
+	app_global_get
+	load 8
+	-
+	app_global_put
+	b label151
+label153:
+	byte base64 bHJ0
+	app_global_get
+	byte base64 cmE=
+	app_global_get
+	byte base64 cnA=
+	app_global_get
+	/
+	+
+	b label154
+label152:
+	byte base64 bHJ0
+	app_global_get
+	byte base64 cmE=
+	app_global_get
+	byte base64 cnA=
+	app_global_get
+	/
+	+
+	b label155
+label150:
+	load 0
+	intc 10 
+	<=
+	bnz label156
+	load 0
+	intc 11 
+	<=
+	bnz label157
+	load 0
+	intc 7 
+	<=
+	bnz label158
+	load 0
+	intc 4 
+	==
+	bnz label159
+	intc 30 
+label199:
+	store 1
+	load 1
+	bytec 26 
+	app_global_get_ex
+	store 20
+	store 12
+	load 20
+	assert
+	load 12
+	int 1
+	==
+	!
+	bnz label160
+	bytec 15 
+	app_global_get
+	load 0
+	int 1
+	-
+	getbit
+	!
+	bnz label160
+	load 1
+	bytec 28 
+	app_global_get_ex
+	store 26
+	store 25
+	load 26
+	bnz label161
+	int 0
+	store 6
+label198:
+	load 1
+	bytec 29 
+	app_global_get_ex
+	store 22
+	store 21
+	load 1
+	bytec 24 
+	app_global_get_ex
+	store 24
+	store 23
+	load 22
+	bnz label162
+	int 0
+	store 7
+label197:
+	load 1
+	bytec 27 
+	app_global_get_ex
+	store 36
+	store 35
+	load 36
+	assert
+	load 6
+	load 7
+	+
+	store 5
+	load 5
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	app_global_get
+	mulw
+	load 13
+	bnz label163
+	int 1
+label196:
+	uncover 2
+	dig 1
+	*
+	cover 2
+	mulw
+	cover 2
+	+
+	swap
+	int 0
+	load 35
+	divmodw
+	pop
+	pop
+	swap
+	!
+	assert
+	store 4
+	load 3
+	load 4
+	+
+	store 3
+	load 0
+	intc 10 
+	<=
+	bnz label164
+	load 0
+	intc 11 
+	<=
+	bnz label165
+	load 0
+	intc 7 
+	<=
+	bnz label166
+	load 0
+	intc 4 
+	==
+	bnz label167
+	load 4
+	store 253
+label184:
+	load 0
+	intc 10 
+	<=
+	bnz label168
+	load 0
+	intc 11 
+	<=
+	bnz label169
+	load 0
+	intc 7 
+	<=
+	bnz label170
+	load 0
+	intc 4 
+	==
+	bnz label171
+	load 5
+	store 254
+label160:
+	load 0
+	int 1
+	+
+	store 0
+	b label172
+label171:
+	load 5
+	store 250
+	b label160
+label170:
+	load 0
+	intc 6 
+	==
+	bnz label173
+	load 5
+	store 246
+	b label160
+label173:
+	load 5
+	store 242
+	b label160
+label169:
+	load 0
+	intc 13 
+	<=
+	bnz label174
+	load 0
+	intc 12 
+	==
+	bnz label175
+	load 5
+	store 238
+	b label160
+label175:
+	load 5
+	store 234
+	b label160
+label174:
+	load 0
+	intc 14 
+	==
+	bnz label176
+	load 5
+	store 230
+	b label160
+label176:
+	load 5
+	store 226
+	b label160
+label168:
+	load 0
+	int 4
+	<=
+	bnz label177
+	load 0
+	int 6
+	<=
+	bnz label178
+	load 0
+	intc 15 
+	==
+	bnz label179
+	load 5
+	store 222
+	b label160
+label179:
+	load 5
+	store 218
+	b label160
+label178:
+	load 0
+	intc 9 
+	==
+	bnz label180
+	load 5
+	store 214
+	b label160
+label180:
+	load 5
+	store 210
+	b label160
+label177:
+	load 0
+	intc 5 
+	<=
+	bnz label181
+	load 0
+	intc 8 
+	==
+	bnz label182
+	load 5
+	store 206
+	b label160
+label182:
+	load 5
+	store 202
+	b label160
+label181:
+	load 0
+	int 1
+	==
+	bnz label183
+	load 5
+	store 198
+	b label160
+label183:
+	load 5
+	store 194
+	b label160
+label167:
+	load 4
+	store 249
+	b label184
+label166:
+	load 0
+	intc 6 
+	==
+	bnz label185
+	load 4
+	store 245
+	b label184
+label185:
+	load 4
+	store 241
+	b label184
+label165:
+	load 0
+	intc 13 
+	<=
+	bnz label186
+	load 0
+	intc 12 
+	==
+	bnz label187
+	load 4
+	store 237
+	b label184
+label187:
+	load 4
+	store 233
+	b label184
+label186:
+	load 0
+	intc 14 
+	==
+	bnz label188
+	load 4
+	store 229
+	b label184
+label188:
+	load 4
+	store 225
+	b label184
+label164:
+	load 0
+	int 4
+	<=
+	bnz label189
+	load 0
+	int 6
+	<=
+	bnz label190
+	load 0
+	intc 15 
+	==
+	bnz label191
+	load 4
+	store 221
+	b label184
+label191:
+	load 4
+	store 217
+	b label184
+label190:
+	load 0
+	intc 9 
+	==
+	bnz label192
+	load 4
+	store 213
+	b label184
+label192:
+	load 4
+	store 209
+	b label184
+label189:
+	load 0
+	intc 5 
+	<=
+	bnz label193
+	load 0
+	intc 8 
+	==
+	bnz label194
+	load 4
+	store 205
+	b label184
+label194:
+	load 4
+	store 201
+	b label184
+label193:
+	load 0
+	int 1
+	==
+	bnz label195
+	load 4
+	store 197
+	b label184
+label195:
+	load 4
+	store 193
+	b label184
+label163:
+	bytec 7 
+	app_global_get
+	load 0
+	int 1
+	-
+	int 4
+	*
+	getbit
+	bytec 7 
+	app_global_get
+	load 0
+	int 1
+	-
+	int 4
+	*
+	int 1
+	+
+	getbit
+	intc 5 
+	*
+	+
+	bytec 7 
+	app_global_get
+	load 0
+	int 1
+	-
+	int 4
+	*
+	intc 5 
+	+
+	getbit
+	int 4
+	*
+	+
+	bytec 7 
+	app_global_get
+	load 0
+	int 1
+	-
+	int 4
+	*
+	intc 8 
+	+
+	getbit
+	intc 10 
+	*
+	+
+	b label196
+label162:
+	load 21
+	load 23
+	mulw
+	int 0
+	intc 33 
+	divmodw
+	pop
+	pop
+	swap
+	!
+	assert
+	store 7
+	b label197
+label161:
+	load 25
+	store 6
+	b label198
+label159:
+	intc 31 
+	b label199
+label158:
+	load 0
+	intc 6 
+	==
+	bnz label200
+	intc 32 
+	b label199
+label200:
+	intc 18 
+	b label199
+label157:
+	load 0
+	intc 13 
+	<=
+	bnz label201
+	load 0
+	intc 12 
+	==
+	bnz label202
+	intc 19 
+	b label199
+label202:
+	intc 20 
+	b label199
+label201:
+	load 0
+	intc 14 
+	==
+	bnz label203
+	intc 21 
+	b label199
+label203:
+	intc 22 
+	b label199
+label156:
+	load 0
+	int 4
+	<=
+	bnz label204
+	load 0
+	int 6
+	<=
+	bnz label205
+	load 0
+	intc 15 
+	==
+	bnz label206
+	intc 23 
+	b label199
+label206:
+	intc 24 
+	b label199
+label205:
+	load 0
+	intc 9 
+	==
+	bnz label207
+	intc 16 
+	b label199
+label207:
+	intc 25 
+	b label199
+label204:
+	load 0
+	intc 5 
+	<=
+	bnz label208
+	load 0
+	intc 8 
+	==
+	bnz label209
+	intc 26 
+	b label199
+label209:
+	intc 27 
+	b label199
+label208:
+	load 0
+	int 1
+	==
+	bnz label210
+	intc 28 
+	b label199
+label210:
+	intc 29 
+	b label199
+label78:
+	global LatestTimestamp
+	bytec 8 
+	app_global_get
+	>
+	global LatestTimestamp
+	byte base64 bHJ0
+	app_global_get
+	byte base64 cmE=
+	app_global_get
+	byte base64 cnA=
+	app_global_get
+	/
+	+
+	<=
+	&&
+	global LatestTimestamp
+	byte base64 bHJ0
+	app_global_get
+	byte base64 cmE=
+	app_global_get
+	byte base64 cnA=
+	app_global_get
+	/
+	+
+	>
+	byte base64 bHJ0
+	app_global_get
+	byte base64 bHJ0
+	app_global_get
+	byte base64 cmE=
+	app_global_get
+	byte base64 cnA=
+	app_global_get
+	/
+	+
+	<
+	&&
+	||
+	store 9
+	b label211
+label50:
+	int 1
+	store 0
+label222:
+	load 0
+	bytec 5 
+	app_global_get
+	<=
+	bnz label212
+	int 1
+	b label19
+label212:
+	load 0
+	intc 10 
+	<=
+	bnz label213
+	load 0
+	intc 11 
+	<=
+	bnz label214
+	load 0
+	intc 7 
+	<=
+	bnz label215
+	load 0
+	intc 4 
+	==
+	bnz label216
+	gload 0 251
+label234:
+	store 2
+	load 2
+	int 0
+	==
+	bnz label217
+	load 0
+	intc 10 
+	<=
+	bnz label218
+	load 0
+	intc 11 
+	<=
+	bnz label219
+	load 0
+	intc 7 
+	<=
+	bnz label220
+	load 0
+	intc 4 
+	==
+	bnz label221
+	load 2
+	gload 0 252
+	app_global_get_ex
+	store 76
+	store 75
+	load 76
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 75
+	app_global_put
+label217:
+	load 0
+	int 1
+	+
+	store 0
+	b label222
+label221:
+	load 2
+	gload 0 248
+	app_global_get_ex
+	store 74
+	store 73
+	load 74
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 73
+	app_global_put
+	b label217
+label220:
+	load 0
+	intc 6 
+	==
+	bnz label223
+	load 2
+	gload 0 244
+	app_global_get_ex
+	store 72
+	store 71
+	load 72
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 71
+	app_global_put
+	b label217
+label223:
+	load 2
+	gload 0 240
+	app_global_get_ex
+	store 70
+	store 69
+	load 70
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 69
+	app_global_put
+	b label217
+label219:
+	load 0
+	intc 13 
+	<=
+	bnz label224
+	load 0
+	intc 12 
+	==
+	bnz label225
+	load 2
+	gload 0 236
+	app_global_get_ex
+	store 68
+	store 67
+	load 68
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 67
+	app_global_put
+	b label217
+label225:
+	load 2
+	gload 0 232
+	app_global_get_ex
+	store 66
+	store 65
+	load 66
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 65
+	app_global_put
+	b label217
+label224:
+	load 0
+	intc 14 
+	==
+	bnz label226
+	load 2
+	gload 0 228
+	app_global_get_ex
+	store 64
+	store 63
+	load 64
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 63
+	app_global_put
+	b label217
+label226:
+	load 2
+	gload 0 224
+	app_global_get_ex
+	store 62
+	store 61
+	load 62
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 61
+	app_global_put
+	b label217
+label218:
+	load 0
+	int 4
+	<=
+	bnz label227
+	load 0
+	int 6
+	<=
+	bnz label228
+	load 0
+	intc 15 
+	==
+	bnz label229
+	load 2
+	gload 0 220
+	app_global_get_ex
+	store 60
+	store 59
+	load 60
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 59
+	app_global_put
+	b label217
+label229:
+	load 2
+	gload 0 216
+	app_global_get_ex
+	store 58
+	store 57
+	load 58
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 57
+	app_global_put
+	b label217
+label228:
+	load 0
+	intc 9 
+	==
+	bnz label230
+	load 2
+	gload 0 212
+	app_global_get_ex
+	store 56
+	store 55
+	load 56
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 55
+	app_global_put
+	b label217
+label230:
+	load 2
+	gload 0 208
+	app_global_get_ex
+	store 54
+	store 53
+	load 54
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 53
+	app_global_put
+	b label217
+label227:
+	load 0
+	intc 5 
+	<=
+	bnz label231
+	load 0
+	intc 8 
+	==
+	bnz label232
+	load 2
+	gload 0 204
+	app_global_get_ex
+	store 52
+	store 51
+	load 52
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 51
+	app_global_put
+	b label217
+label232:
+	load 2
+	gload 0 200
+	app_global_get_ex
+	store 50
+	store 49
+	load 50
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 49
+	app_global_put
+	b label217
+label231:
+	load 0
+	int 1
+	==
+	bnz label233
+	load 2
+	gload 0 196
+	app_global_get_ex
+	store 48
+	store 47
+	load 48
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 47
+	app_global_put
+	b label217
+label233:
+	load 2
+	gload 0 192
+	app_global_get_ex
+	store 46
+	store 45
+	load 46
+	assert
+	load 0
+	itob
+	byte base64 X3A=
+	concat
+	load 45
+	app_global_put
+	b label217
+label216:
+	gload 0 247
+	b label234
+label215:
+	load 0
+	intc 6 
+	==
+	bnz label235
+	gload 0 243
+	b label234
+label235:
+	gload 0 239
+	b label234
+label214:
+	load 0
+	intc 13 
+	<=
+	bnz label236
+	load 0
+	intc 12 
+	==
+	bnz label237
+	gload 0 235
+	b label234
+label237:
+	gload 0 231
+	b label234
+label236:
+	load 0
+	intc 14 
+	==
+	bnz label238
+	gload 0 227
+	b label234
+label238:
+	gload 0 223
+	b label234
+label213:
+	load 0
+	int 4
+	<=
+	bnz label239
+	load 0
+	int 6
+	<=
+	bnz label240
+	load 0
+	intc 15 
+	==
+	bnz label241
+	gload 0 219
+	b label234
+label241:
+	gload 0 215
+	b label234
+label240:
+	load 0
+	intc 9 
+	==
+	bnz label242
+	gload 0 211
+	b label234
+label242:
+	gload 0 207
+	b label234
+label239:
+	load 0
+	intc 5 
+	<=
+	bnz label243
+	load 0
+	intc 8 
+	==
+	bnz label244
+	gload 0 203
+	b label234
+label244:
+	gload 0 199
+	b label234
+label243:
+	load 0
+	int 1
+	==
+	bnz label245
+	gload 0 195
+	b label234
+label245:
+	gload 0 191
+	b label234
+label49:
+	int 1
+	store 0
+label255:
+	load 0
+	bytec 5 
+	app_global_get
+	<=
+	bnz label246
+	int 1
+	b label19
+label246:
+	load 0
+	intc 10 
+	<=
+	bnz label247
+	load 0
+	intc 11 
+	<=
+	bnz label248
+	load 0
+	intc 7 
+	<=
+	bnz label249
+	load 0
+	intc 4 
+	==
+	bnz label250
+	intc 30 
+label268:
+	store 1
+	load 1
+	pushbytes 0x6f 
+	app_global_get_ex
+	store 30
+	store 29
+	load 1
+	pushbytes 0x6f70 
+	app_global_get_ex
+	store 32
+	store 31
+	load 0
+	intc 10 
+	<=
+	bnz label251
+	load 0
+	intc 11 
+	<=
+	bnz label252
+	load 0
+	intc 7 
+	<=
+	bnz label253
+	load 0
+	intc 4 
+	==
+	bnz label254
+	load 29
+	store 251
+	load 31
+	store 252
+label256:
+	load 0
+	int 1
+	+
+	store 0
+	b label255
+label254:
+	load 29
+	store 247
+	load 31
+	store 248
+	b label256
+label253:
+	load 0
+	intc 6 
+	==
+	bnz label257
+	load 29
+	store 243
+	load 31
+	store 244
+	b label256
+label257:
+	load 29
+	store 239
+	load 31
+	store 240
+	b label256
+label252:
+	load 0
+	intc 13 
+	<=
+	bnz label258
+	load 0
+	intc 12 
+	==
+	bnz label259
+	load 29
+	store 235
+	load 31
+	store 236
+	b label256
+label259:
+	load 29
+	store 231
+	load 31
+	store 232
+	b label256
+label258:
+	load 0
+	intc 14 
+	==
+	bnz label260
+	load 29
+	store 227
+	load 31
+	store 228
+	b label256
+label260:
+	load 29
+	store 223
+	load 31
+	store 224
+	b label256
+label251:
+	load 0
+	int 4
+	<=
+	bnz label261
+	load 0
+	int 6
+	<=
+	bnz label262
+	load 0
+	intc 15 
+	==
+	bnz label263
+	load 29
+	store 219
+	load 31
+	store 220
+	b label256
+label263:
+	load 29
+	store 215
+	load 31
+	store 216
+	b label256
+label262:
+	load 0
+	intc 9 
+	==
+	bnz label264
+	load 29
+	store 211
+	load 31
+	store 212
+	b label256
+label264:
+	load 29
+	store 207
+	load 31
+	store 208
+	b label256
+label261:
+	load 0
+	intc 5 
+	<=
+	bnz label265
+	load 0
+	intc 8 
+	==
+	bnz label266
+	load 29
+	store 203
+	load 31
+	store 204
+	b label256
+label266:
+	load 29
+	store 199
+	load 31
+	store 200
+	b label256
+label265:
+	load 0
+	int 1
+	==
+	bnz label267
+	load 29
+	store 195
+	load 31
+	store 196
+	b label256
+label267:
+	load 29
+	store 191
+	load 31
+	store 192
+	b label256
+label250:
+	intc 31 
+	b label268
+label249:
+	load 0
+	intc 6 
+	==
+	bnz label269
+	intc 32 
+	b label268
+label269:
+	intc 18 
+	b label268
+label248:
+	load 0
+	intc 13 
+	<=
+	bnz label270
+	load 0
+	intc 12 
+	==
+	bnz label271
+	intc 19 
+	b label268
+label271:
+	intc 20 
+	b label268
+label270:
+	load 0
+	intc 14 
+	==
+	bnz label272
+	intc 21 
+	b label268
+label272:
+	intc 22 
+	b label268
+label247:
+	load 0
+	int 4
+	<=
+	bnz label273
+	load 0
+	int 6
+	<=
+	bnz label274
+	load 0
+	intc 15 
+	==
+	bnz label275
+	intc 23 
+	b label268
+label275:
+	intc 24 
+	b label268
+label274:
+	load 0
+	intc 9 
+	==
+	bnz label276
+	intc 16 
+	b label268
+label276:
+	intc 25 
+	b label268
+label273:
+	load 0
+	intc 5 
+	<=
+	bnz label277
+	load 0
+	intc 8 
+	==
+	bnz label278
+	intc 26 
+	b label268
+label278:
+	intc 27 
+	b label268
+label277:
+	load 0
+	int 1
+	==
+	bnz label279
+	intc 28 
+	b label268
+label279:
+	intc 29 
+	b label268
+label48:
+	global GroupSize
+	intc 6 
+	>=
+	assert
+	global GroupSize
+	intc 17 
+	<=
+	assert
+	gtxna 0 ApplicationArgs 0
+	pushbytes 0x666d76 
+	==
+	assert
+	gtxna 1 ApplicationArgs 0
+	pushbytes 0x7570 
+	==
+	assert
+	gtxna 2 ApplicationArgs 0
+	pushbytes 0x757064 
+	==
+	assert
+	gtxn 0 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 1 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 2 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 3 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 4 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 5 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 6 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 7 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 8 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 9 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 10 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 11 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 12 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 0 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 1 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 2 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 3 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 4 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 5 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 6 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 7 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 8 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 9 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 10 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 11 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 12 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 1 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 2 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 3 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 4 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 5 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 6 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 7 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 8 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 9 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 10 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 11 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 12 Sender
+	gtxn 0 Sender
+	==
+	assert
+	int 0
+	bytec 9 
+	app_local_get
+	gtxna 2 Accounts 1
+	==
+	gtxna 12 ApplicationArgs 0
+	bytec 21 
+	==
+	||
+	assert
+	gtxn 2 NumAccounts
+	int 1
+	==
+	assert
+	global GroupSize
+	intc 7 
+	>=
+	bnz label280
+label317:
+	global GroupSize
+	intc 4 
+	>=
+	bnz label281
+label300:
+	global GroupSize
+	intc 17 
+	==
+	bz label282
+	gtxna 15 ApplicationArgs 0
+	bytec 21 
+	==
+	assert
+	gtxn 15 ApplicationID
+	intc 29 
+	==
+	bnz label283
+	gtxn 15 ApplicationID
+	intc 28 
+	==
+	bnz label284
+	gtxn 15 ApplicationID
+	intc 27 
+	==
+	bnz label285
+	gtxn 15 ApplicationID
+	intc 26 
+	==
+	bnz label286
+	gtxn 15 ApplicationID
+	intc 25 
+	==
+	bnz label287
+	gtxn 15 ApplicationID
+	intc 16 
+	==
+	bnz label288
+	gtxn 15 ApplicationID
+	intc 24 
+	==
+	bnz label289
+	gtxn 15 ApplicationID
+	intc 23 
+	==
+	bnz label290
+	gtxn 15 ApplicationID
+	intc 22 
+	==
+	bnz label291
+	gtxn 15 ApplicationID
+	intc 21 
+	==
+	bnz label292
+	gtxn 15 ApplicationID
+	intc 20 
+	==
+	bnz label293
+	gtxn 15 ApplicationID
+	intc 19 
+	==
+	bnz label294
+	gtxn 15 ApplicationID
+	intc 18 
+	==
+	bnz label295
+	gtxn 15 ApplicationID
+	intc 32 
+	==
+	bnz label296
+	gtxn 15 ApplicationID
+	intc 31 
+	==
+	bnz label297
+	gtxn 15 ApplicationID
+	intc 30 
+	==
+	bnz label298
+	err
+label298:
+	intc 17 
+label299:
+	assert
+	gtxn 15 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 15 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxna 15 Accounts 1
+	gtxna 2 Accounts 1
+	==
+	assert
+	gtxna 15 ApplicationArgs 0
+	gtxna 13 ApplicationArgs 0
+	==
+	assert
+	b label282
+label297:
+	intc 4 
+	b label299
+label296:
+	intc 7 
+	b label299
+label295:
+	intc 6 
+	b label299
+label294:
+	intc 11 
+	b label299
+label293:
+	intc 12 
+	b label299
+label292:
+	intc 13 
+	b label299
+label291:
+	intc 14 
+	b label299
+label290:
+	intc 10 
+	b label299
+label289:
+	intc 15 
+	b label299
+label288:
+	int 6
+	b label299
+label287:
+	intc 9 
+	b label299
+label286:
+	int 4
+	b label299
+label285:
+	intc 8 
+	b label299
+label284:
+	intc 5 
+	b label299
+label283:
+	int 1
+	b label299
+label281:
+	gtxn 14 TypeEnum
+	int 1
+	==
+	gtxn 14 TypeEnum
+	int 4
+	==
+	||
+	assert
+	b label300
+label280:
+	gtxna 12 ApplicationArgs 0
+	gtxna 13 ApplicationArgs 0
+	==
+	assert
+	gtxn 13 OnCompletion
+	int 0
+	==
+	assert
+	gtxn 13 ApplicationID
+	intc 29 
+	==
+	bnz label301
+	gtxn 13 ApplicationID
+	intc 28 
+	==
+	bnz label302
+	gtxn 13 ApplicationID
+	intc 27 
+	==
+	bnz label303
+	gtxn 13 ApplicationID
+	intc 26 
+	==
+	bnz label304
+	gtxn 13 ApplicationID
+	intc 25 
+	==
+	bnz label305
+	gtxn 13 ApplicationID
+	intc 16 
+	==
+	bnz label306
+	gtxn 13 ApplicationID
+	intc 24 
+	==
+	bnz label307
+	gtxn 13 ApplicationID
+	intc 23 
+	==
+	bnz label308
+	gtxn 13 ApplicationID
+	intc 22 
+	==
+	bnz label309
+	gtxn 13 ApplicationID
+	intc 21 
+	==
+	bnz label310
+	gtxn 13 ApplicationID
+	intc 20 
+	==
+	bnz label311
+	gtxn 13 ApplicationID
+	intc 19 
+	==
+	bnz label312
+	gtxn 13 ApplicationID
+	intc 18 
+	==
+	bnz label313
+	gtxn 13 ApplicationID
+	intc 32 
+	==
+	bnz label314
+	gtxn 13 ApplicationID
+	intc 31 
+	==
+	bnz label315
+	gtxn 13 ApplicationID
+	intc 30 
+	==
+	bnz label316
+	err
+label316:
+	intc 17 
+label318:
+	assert
+	gtxn 13 Sender
+	gtxn 1 Sender
+	==
+	assert
+	gtxn 13 NumAccounts
+	int 1
+	==
+	assert
+	gtxna 13 Accounts 1
+	gtxna 2 Accounts 1
+	==
+	assert
+	b label317
+label315:
+	intc 4 
+	b label318
+label314:
+	intc 7 
+	b label318
+label313:
+	intc 6 
+	b label318
+label312:
+	intc 11 
+	b label318
+label311:
+	intc 12 
+	b label318
+label310:
+	intc 13 
+	b label318
+label309:
+	intc 14 
+	b label318
+label308:
+	intc 10 
+	b label318
+label307:
+	intc 15 
+	b label318
+label306:
+	int 6
+	b label318
+label305:
+	intc 9 
+	b label318
+label304:
+	int 4
+	b label318
+label303:
+	intc 8 
+	b label318
+label302:
+	intc 5 
+	b label318
+label301:
+	int 1
+	b label318
+label6:
+	gtxn 0 ApplicationID
+	global CurrentApplicationID
+	==
+	gtxn 0 OnCompletion
+	int 0
+	==
+	&&
+	b label319
+label5:
+	global GroupSize
+	intc 17 
+	==
+	assert
+	gtxn 0 TypeEnum
+	int 1
+	==
+	assert
+	gtxn 0 Sender
+	gtxn 0 Receiver
+	!=
+	assert
+	gtxn 1 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 1 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 1 ApplicationID
+	intc 29 
+	==
+	assert
+	gtxn 1 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 2 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 2 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 2 ApplicationID
+	intc 28 
+	==
+	assert
+	gtxn 2 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 3 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 3 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 3 ApplicationID
+	intc 27 
+	==
+	assert
+	gtxn 3 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 4 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 4 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 4 ApplicationID
+	intc 26 
+	==
+	assert
+	gtxn 4 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 5 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 5 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 5 ApplicationID
+	intc 25 
+	==
+	assert
+	gtxn 5 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 6 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 6 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 6 ApplicationID
+	intc 16 
+	==
+	assert
+	gtxn 6 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 7 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 7 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 7 ApplicationID
+	intc 24 
+	==
+	assert
+	gtxn 7 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 8 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 8 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 8 ApplicationID
+	intc 23 
+	==
+	assert
+	gtxn 8 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 9 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 9 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 9 ApplicationID
+	intc 22 
+	==
+	assert
+	gtxn 9 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 10 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 10 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 10 ApplicationID
+	intc 21 
+	==
+	assert
+	gtxn 10 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 11 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 11 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 11 ApplicationID
+	intc 20 
+	==
+	assert
+	gtxn 11 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 12 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 12 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 12 ApplicationID
+	intc 19 
+	==
+	assert
+	gtxn 12 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 13 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 13 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 13 ApplicationID
+	intc 18 
+	==
+	assert
+	gtxn 13 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 14 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 14 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 14 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 14 Sender
+	gtxn 0 Sender
+	==
+	assert
+	gtxn 15 TypeEnum
+	int 6
+	==
+	assert
+	gtxn 15 OnCompletion
+	int 1
+	==
+	assert
+	gtxn 15 ApplicationID
+	global CurrentApplicationID
+	==
+	assert
+	gtxn 15 Sender
+	gtxn 0 Receiver
+	==
+	assert
+	gtxn 15 RekeyTo
+	global CurrentApplicationAddress
+	==
+	assert
+	txn GroupIndex
+	intc 7 
+	==
+	txn GroupIndex
+	intc 4 
+	==
+	||
+	assert
+	txn GroupIndex
+	intc 7 
+	==
+	bnz label320
+label323:
+	txn GroupIndex
+	intc 4 
+	==
+	bnz label321
+label322:
+	int 1
+	b label19
+label321:
+	int 0
+	bytec 22 
+	app_local_get
+	int 0
+	==
+	assert
+	int 0
+	bytec 22 
+	gtxn 14 Sender
+	app_local_put
+	b label322
+label320:
+	int 0
+	bytec 9 
+	app_local_get
+	int 0
+	==
+	assert
+	int 0
+	bytec 9 
+	gtxn 15 Sender
+	app_local_put
+	b label323
+label4:
+	global GroupSize
+	int 1
+	==
+	assert
+	int 1
+	b label19
+label3:
+	int 0
+	b label19
+label2:
+	txn Sender
+	bytec 18 
+	app_global_get
+	==
+	assert
+	bytec 11 
+	app_global_get
+	int 0
+	==
+	assert
+	global LatestTimestamp
+	pushint 1648987200
+	>
+	bnz label324
+label325:
+	bytec 16 
+	int 0
+	app_global_put
+	int 1
+	b label19
+label324:
+	bytec 16 
+	app_global_get
+	int 0
+	!=
+	assert
+	bytec 16 
+	app_global_get
+	global LatestTimestamp
+	<=
+	assert
+	b label325
+label1:
+	bytec 11 
+	int 0
+	app_global_put
+	bytec 19 
+	pushint 3600
+	app_global_put
+	bytec 16 
+	int 0
+	app_global_put
+	bytec 5 
+	int 0
+	app_global_put
+	bytec 18 
+	global CreatorAddress
+	app_global_put
+	int 1
+label19:
+	return
